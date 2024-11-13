@@ -33,7 +33,8 @@ Linux-like timer command for Windows.
 ## Example
 
 ```shell
-curl https://httpbin.org/ip
+timer.exe curl https://httpbin.org/ip
+1.5725139s        <<<<<<---- time it took to complete
 ```
 
 This will execute the `curl` command and display the time it took to complete.
