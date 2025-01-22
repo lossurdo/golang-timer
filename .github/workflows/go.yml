@@ -33,5 +33,6 @@ jobs:
         files: timer.exe
         name: ${{ env.RELEASE_VERSION }}
         tag_name: ${{ env.RELEASE_VERSION }}
+        make_latest: true
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}        
