@@ -14,16 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Set Env
+    - name: Set Versioning Tag Name
       run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-    - name: Set up Go
+    - name: Setup Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.23.0'
 
-    - name: Build (64 bits)
-      run: go build -o timer.exe main.go
+    - name: Build (x64)
+      run: GOOS=windows && GOARCH=amd64 && go build -o timer.exe main.go
         
     - name: Release
       uses: softprops/action-gh-release@v2.2.1
