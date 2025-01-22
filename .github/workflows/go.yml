@@ -18,22 +18,13 @@ jobs:
       with:
         go-version: '1.23.0'
 
-    - name: Get OS and Arch Info
-      run: |
-        GOOSARCH=${{matrix.goosarch}}
-        GOOS=${GOOSARCH%/*}
-        GOARCH=${GOOSARCH#*/}
-        BINARY_NAME=${{github.repository}}-$GOOS-$GOARCH
-        echo "BINARY_NAME=$BINARY_NAME" >> $GITHUB_ENV
-        echo "GOOS=$GOOS" >> $GITHUB_ENV
-        echo "GOARCH=$GOARCH" >> $GITHUB_ENV
-
-    - name: Build
-      run: go build -o "$BINARY_NAME" -v
+    - name: Build (64 bits)
+      run: go build -o timer.exe main.go
         
     - name: Release
       uses: softprops/action-gh-release@v2.2.1
       with:
-        files: ${{env.BINARY_NAME}}
+        files: timer.exe
+        tag_name: ${{ github.ref_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}        
