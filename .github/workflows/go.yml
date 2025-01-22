@@ -7,6 +7,8 @@ on:
       - 'v*.*.*'
   pull_request:
     branches: [ "main" ]
+    tags:
+      - 'v*.*.*'
 
 jobs:
 
@@ -25,7 +27,7 @@ jobs:
     - name: Build (x64)
       run: GOOS=windows && GOARCH=amd64 && go build -o timer.exe main.go
         
-    - name: Release
+    - name: Publish Release
       uses: softprops/action-gh-release@v2.2.1
       with:
         files: timer.exe
